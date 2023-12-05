@@ -1,10 +1,11 @@
 import { Fragment, useState } from "react";
 interface Props {
-    items: string[];
-    heading: string;
+  items: string[];
+  heading: string;
+  onSelectItem: (item: string) => void;
 }
 
-function ListsGroup({items, heading}: Props) {
+function ListsGroup({ items, heading, onSelectItem }: Props) {
   // Initialize selectedIndex state
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -21,7 +22,10 @@ function ListsGroup({items, heading}: Props) {
                 : "list-group-item"
             }
             key={item}
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
